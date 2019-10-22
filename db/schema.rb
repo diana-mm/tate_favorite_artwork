@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_22_192631) do
+ActiveRecord::Schema.define(version: 2019_10_22_205356) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 2019_10_22_192631) do
     t.string "artist"
     t.string "artwork_image"
     t.string "year_aquired"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "artwork_id"
+    t.index ["artwork_id"], name: "index_favorites_on_artwork_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
   end
 
 end
