@@ -1,4 +1,3 @@
-developement:
+development:
   adapter: sqlite3
-  database: db/tate_collection
-  
+  database: db/library.sqlite3
