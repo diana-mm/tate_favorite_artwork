@@ -1,3 +1,6 @@
+require 'tty-prompt'
+require 'pry'
+
 class Cli
     attr_reader :prompt
 
@@ -10,10 +13,10 @@ class Cli
     end
 
     def prompt_for_new_or_returning_user
-        prompt.select("Please Select:", ("New User","Returning User"))
+        prompt.select("Please Select New or Returning User", %w(New Returning))
     end
 
-    def prompt_for__new_user
+    def prompt_for_new_user
         prompt.ask('What is your name:')
     end
 
@@ -22,13 +25,7 @@ class Cli
         prompt.select("Please select your name", names)
     end
 
+    # def enter_new_user_name
+
     
-
-
-
-
-
-
-
-
 end
