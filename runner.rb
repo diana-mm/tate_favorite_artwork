@@ -8,6 +8,9 @@ def start
 
     current_user = new_or_returning(cli)
 
+    main_menu(cli)
+
+
 end  
 
 def new_or_returning(cli)
@@ -20,5 +23,19 @@ def new_or_returning(cli)
     current_user = User.find_by(name: returning_user)
   end
 end
+
+def main_menu(cli)
+    selection = cli.main_menu_prompt
+    case selection
+    when 'Browse Artwork'
+        puts 'screen for browsing artwork'
+    when 'View Favorites'
+        puts 'screen for view favorites'
+    when 'Recommend Artwork'
+        puts 'screen for rec artwork'
+    end
+
+end
+
 
 start 
