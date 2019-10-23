@@ -36,7 +36,8 @@ def main_menu(cli)
     when 'Browse Artwork'
         cli.browse_by_artist(Artist.all)
     when 'View Favorites'
-        puts 'screen for view favorites'
+        puts 'Your Favorites'
+        cli.view_favorites(Favorites.all)
     when 'Recommend Artwork'
         puts 'screen for rec artwork'
     end
