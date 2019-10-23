@@ -40,4 +40,7 @@ class Cli
         prompt.select("  ",["Browse Artist"])
     end
 
+    def recommend_artwork(artworks)
+        prompt.select("  Pick an Artwork to View:", artworks)
+    end
 end

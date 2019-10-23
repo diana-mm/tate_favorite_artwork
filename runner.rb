@@ -39,7 +39,8 @@ def main_menu(cli)
         puts 'Your Favorites'
         cli.view_favorites(Favorites.all)
     when 'Recommend Artwork'
-        puts 'screen for rec artwork'
+        puts 'Here are some recommendations:'
+        cli.recommend_artwork(Artwork.all.sample(5))
     end
 
 end
