@@ -26,7 +26,7 @@ class Cli
     end
 
     def main_menu_prompt
-        menu_options = ['Browse Artwork', 'View Favorites', 'Recommend Artwork']
+        menu_options = ['Browse Artwork', 'View Favorites', 'Recommend Artwork', 'Exit']
         prompt.select("Please Select An Option:", menu_options)
     end
 
@@ -35,14 +35,12 @@ class Cli
     end
 
     def view_favorites(user)
-        user_favorites = Favorite.all.select do |favorite|
-            favorite.user == user
-        end
+        user_favorites = Favorite.where(user: user)
         if user_favorites.length == 0
             puts 'You have no favorites'
         else
             user_favorites.each do |favorite|
-                puts favorite.title
+                puts favorite.artwork.artist + " , " + favorite.artwork.title
             end
         end
     end
@@ -59,6 +57,8 @@ class Cli
         prompt.select("Pick a piece of art:", art_artist)
     end
 
-   
-
+     def favorite_artwork(artwork)
+        options = ['Favorite Art Piece', 'Return to Main Menu']
+        prompt.select('What would you like to do?', options) 
+    end
 end

@@ -13,6 +13,8 @@ def start
 
 
     main_menu
+    exit
+    favoriting_artwork
 
 
 end  
@@ -37,14 +39,28 @@ def main_menu
       main_menu
     when 'Browse Artwork'
         @@selected_artist = @@cli.browse_by_artist(Artist.all)
-        @@cli.artwork_by_artist(@@selected_artist)
+        @@selected_artwork = @@cli.artwork_by_artist(@@selected_artist)
         favoriting_artwork
     when 'Recommend Artwork'
         puts 'Here are some recommendations:'
         @@cli.recommend_artwork(Artwork.all.sample(5))
+        favoriting_artwork
+    when 'Exit'
+      exit
     end
+end
+
+  def favoriting_artwork
+   art_selection = @@cli.favorite_artwork(@@selected_artwork)
+   case art_selection
+   when 'Favorite Art Piece'
+    Favorite.create(user: @@current_user, artwork: @@selected_artwork)
+     @@cli.view_favorites(@@current_user)
+     main_menu
+   when "Return to Main Menu"
+     main_menu
+   end
   end
 
-   
 
 start 
