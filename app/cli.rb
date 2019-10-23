@@ -35,5 +35,9 @@ class Cli
         prompt.select("Choose an artist to see their artwork:", artists)
     end
 
-    
+    def view_favorites(favorites)
+        
+        prompt.select("  ",["Browse Artist"])
+    end
+
 end
