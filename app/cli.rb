@@ -10,7 +10,7 @@ class Cli
     end
 
     def prompt_for_new_or_returning_user
-        prompt.select("Please Select:", ("New User","Returning User"))
+        prompt.select("Please Select:", ("New_User" "Returning_User"))
     end
 
     def prompt_for__new_user
@@ -22,6 +22,9 @@ class Cli
         prompt.select("Please select your name", names)
     end
 
+    def main_menu
+        menu_option
+
     
 
 
@@ -30,5 +33,5 @@ class Cli
 
 
 
-
+    end
 end

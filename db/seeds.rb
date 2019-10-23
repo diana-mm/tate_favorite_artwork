@@ -2,7 +2,7 @@ require 'csv'
 Artist.destroy_all
 Artwork.destroy_all
 
-CSV.foreach('lib/artist_data.csv', headers: true, header_converters: :symbol) do |row|
+CSV.foreach('lib/parsed_artist.csv', headers: true, header_converters: :symbol) do |row|
     Artist.create(
         name: row[:name],
         nationality: row[:placeofbirth],
@@ -10,7 +10,7 @@ CSV.foreach('lib/artist_data.csv', headers: true, header_converters: :symbol) do
     )    
 end
 
-CSV.foreach('lib/artwork_data.csv', headers: true, header_converters: :symbol) do |row|
+CSV.foreach('lib/parsed_artwork.csv', headers: true, header_converters: :symbol) do |row|
     Artwork.create(
         title: row[:title],
         artist: row[:artist],
