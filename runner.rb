@@ -1,12 +1,8 @@
 require_relative './config/environment.rb'
 
-FAKE_ARTISTS = [
-    OpenStruct.new(name: 'Da Vinci', nationality: 'Italy', artist_info: 'inventor'),
-    OpenStruct.new(name: 'Bob', nationality: 'France', artist_info: 'painter'),
-    OpenStruct.new(name: 'Da Da', nationality: 'Spain', artist_info: 'welder'), 
-]
-
 def start
+
+  @@selected_artist = nil
 
     cli = Cli.new
      
@@ -15,6 +11,8 @@ def start
     current_user = new_or_returning(cli)
 
     main_menu(cli)
+
+    artists_artwork(cli)
 
 
 end  
@@ -34,7 +32,7 @@ def main_menu(cli)
     selection = cli.main_menu_prompt
     case selection
     when 'Browse Artwork'
-        cli.browse_by_artist(Artist.all)
+        @@selected_artist = cli.browse_by_artist(Artist.all)
     when 'View Favorites'
         puts 'Your Favorites'
         cli.view_favorites(Favorites.all)
@@ -43,8 +41,14 @@ def main_menu(cli)
         cli.recommend_artwork(Artwork.all.sample(5))
     end
 
-end
+    def artists_artwork(cli)
+      cli.artwork_by_artist(@@selected_artist)
+    end
 
+    
+
+end
+      # binding.pry
 
 
 
