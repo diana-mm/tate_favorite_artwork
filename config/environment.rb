@@ -5,5 +5,5 @@ require 'require_all'
 require 'pry'
 
 require_all 'app'
-# binding.pry
+binding.pry
 0
