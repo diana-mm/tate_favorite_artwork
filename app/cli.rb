@@ -30,5 +30,10 @@ class Cli
         prompt.select("Please Select An Option:", menu_options)
     end
 
+    def browse_by_artist(artists)
+        
+        prompt.select("Choose an artist to see their artwork:", artists)
+    end
+
     
 end

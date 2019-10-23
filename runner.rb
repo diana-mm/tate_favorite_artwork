@@ -1,5 +1,11 @@
 require_relative './config/environment.rb'
 
+FAKE_ARTISTS = [
+    OpenStruct.new(name: 'Da Vinci', nationality: 'Italy', artist_info: 'inventor'),
+    OpenStruct.new(name: 'Bob', nationality: 'France', artist_info: 'painter'),
+    OpenStruct.new(name: 'Da Da', nationality: 'Spain', artist_info: 'welder'), 
+]
+
 def start
 
     cli = Cli.new
@@ -28,7 +34,7 @@ def main_menu(cli)
     selection = cli.main_menu_prompt
     case selection
     when 'Browse Artwork'
-        puts 'screen for browsing artwork'
+        cli.browse_by_artist(Artist.all)
     when 'View Favorites'
         puts 'screen for view favorites'
     when 'Recommend Artwork'
@@ -36,6 +42,8 @@ def main_menu(cli)
     end
 
 end
+
+
 
 
 start 
