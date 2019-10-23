@@ -36,4 +36,6 @@ ActiveRecord::Schema.define(version: 2019_10_22_205356) do
     t.string "name"
   end
 
+  add_foreign_key "favorites", "artworks"
+  add_foreign_key "favorites", "users"
 end
