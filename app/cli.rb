@@ -5,7 +5,7 @@ class Cli
     attr_reader :prompt
 
     def initialize
-        @prompt = TTY::Prompt.new
+        @prompt = TTY::Prompt.new(symbols: {marker: '→'})
     end
 
     def welcome_page
@@ -33,6 +33,8 @@ class Cli
     def browse_by_artist(artists)
         
         prompt.select("Choose an artist to see their artwork:", artists)
+
+
     end
 
     def view_favorites(favorites)
@@ -43,4 +45,16 @@ class Cli
     def recommend_artwork(artworks)
         prompt.select("  Pick an Artwork to View:", artworks)
     end
+
+    def artwork_by_artist(artist)
+        art_artist = []
+        art_artist = Artwork.all.select do |artwork|
+             artwork.artist == artist.name 
+        end
+        prompt.select("Pick a piece of art:", art_artist)
+    end.favorite_artwork
+
+    def facorite_artwork()
+    end
+
 end
