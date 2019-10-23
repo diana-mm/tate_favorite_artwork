@@ -31,15 +31,20 @@ class Cli
     end
 
     def browse_by_artist(artists)
-        
-        prompt.select("Choose an artist to see their artwork:", artists)
-
-
+         prompt.select("Choose an artist to see their artwork:", artists)
     end
 
-    def view_favorites(favorites)
-        
-        prompt.select("  ",["Browse Artist"])
+    def view_favorites(user)
+        user_favorites = Favorite.all.select do |favorite|
+            favorite.user == user
+        end
+        if user_favorites.length == 0
+            puts 'You have no favorites'
+        else
+            user_favorites.each do |favorite|
+                puts favorite.title
+            end
+        end
     end
 
     def recommend_artwork(artworks)
@@ -52,9 +57,8 @@ class Cli
              artwork.artist == artist.name 
         end
         prompt.select("Pick a piece of art:", art_artist)
-    end.favorite_artwork
-
-    def facorite_artwork()
     end
+
+   
 
 end
