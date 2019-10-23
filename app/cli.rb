@@ -25,7 +25,10 @@ class Cli
         prompt.select("Please select your name", names)
     end
 
-    # def enter_new_user_name
+    def main_menu_prompt
+        menu_options = ['Browse Artwork', 'View Favorites', 'Recommend Artwork']
+        prompt.select("Please Select An Option:", menu_options)
+    end
 
     
 end
