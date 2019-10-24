@@ -1,6 +1,7 @@
 require_relative './config/environment.rb'
 
 def start
+  pid = fork{exec 'afplay','-v','-volume 0.75','./lib/music/music.mp3'}
   @@selected_artist = nil
   @@selected_artwork = nil
   @@cli = Cli.new
@@ -57,6 +58,7 @@ def main_menu
       `say "Thank you for using the Tate Collection App"`
       puts "Thank You for Using the Tate Collection App!".black.on_red.bold
       system("imgcat ./lib/images/inside.jpg")
+      fork{exec 'killall afplay'}
       exit
     end
 end
