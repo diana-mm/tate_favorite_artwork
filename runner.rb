@@ -1,34 +1,21 @@
 require_relative './config/environment.rb'
-require 'colorize'
-
-
 
 def start
-
   @@selected_artist = nil
   @@selected_artwork = nil
-  
   @@cli = Cli.new
- 
   @@current_user = new_or_returning
   
-    welcome_page
-    main_menu
-    exit
-    favoriting_artwork
-
-
+  main_menu
+  exit
+  favoriting_artwork
 end  
-
-def welcome_page
- 
-end
 
 def new_or_returning
   system("clear")
   system("imgcat ./lib/images/Tate_Logo.jpg")
   puts ""
-  puts "Welcome to the Tate Museum Arts App".black.on_red.bold
+  puts "Welcome to the Tate Collection App".black.on_red.bold
   puts ""
   user = @@cli.prompt_for_new_or_returning_user
   if user == "New"
@@ -48,24 +35,24 @@ def main_menu
   puts ""
     selection = @@cli.main_menu_prompt
     case selection
-    when 'View Favorites' 
+    when '★ View Favorites' 
       puts ""
-      puts 'Your Favorites'.white.on_green.bold
+      puts '★ Your Favorites'.white.on_green.bold
       @@cli.view_favorites(@@current_user)
       main_menu
-    when 'Browse Artwork'
+    when '★ Browse Artwork'
       puts ""
         @@selected_artist = @@cli.browse_by_artist(Artist.all)
         @@selected_artwork = @@cli.artwork_by_artist(@@selected_artist)
         favoriting_artwork
-    when 'Recommend Artwork'
+    when '★ Recommend Artwork'
       puts ""
         puts 'Here are some recommendations:'.white.on_green.bold
        @@selected_artwork =  @@cli.recommend_artwork(Artwork.all.sample(5))
         favoriting_artwork
-    when 'Exit'
+    when '★ Exit'
       system("clear")
-      puts "Thank You for Visiting!".black.on_red.bold
+      puts "Thank You for Using the Tate Collection App!".black.on_red.bold
       system("imgcat ./lib/images/inside.jpg")
       exit
     end

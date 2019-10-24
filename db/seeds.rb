@@ -1,3 +1,4 @@
+
 require 'csv'
 Artist.destroy_all
 Artwork.destroy_all

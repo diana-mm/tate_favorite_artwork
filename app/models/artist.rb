@@ -1,7 +1,8 @@
+
 class Artist < ActiveRecord::Base
 
 def to_s
-    return "#{name}, #{nationality}, #{artist_info}"
+    return "★ #{name} | Artist's Bio: #{artist_info}"
 end
 
 end
