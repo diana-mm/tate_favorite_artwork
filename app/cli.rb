@@ -8,26 +8,22 @@ class Cli
         @prompt = TTY::Prompt.new(symbols: {marker: '→'})
     end
 
-    def welcome_page
-        puts "Welcome to the Tate Museum Arts App"
-    end
-
     def prompt_for_new_or_returning_user
-        prompt.select("Please Select New or Returning User", %w(New Returning))
+        prompt.select("Are you a New or Returning User?", %w(New Returning))
     end
 
     def prompt_for_new_user
-        prompt.ask('What is your name:')
+        prompt.ask('What is your name?:')
     end
 
     def prompt_for_returning_user 
         names = User.pluck(:name)
-        prompt.select("Please select your name", names)
+        prompt.select("Please select your name:", names)
     end
 
     def main_menu_prompt
         menu_options = ['Browse Artwork', 'View Favorites', 'Recommend Artwork', 'Exit']
-        prompt.select("Please Select An Option:", menu_options)
+        prompt.select(" Please Select An Option:", menu_options)
     end
 
     def browse_by_artist(artists)
