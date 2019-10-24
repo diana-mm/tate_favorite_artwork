@@ -1,4 +1,7 @@
 require_relative './config/environment.rb'
+require 'colorize'
+
+
 
 def start
 
@@ -22,61 +25,59 @@ def welcome_page
 end
 
 def new_or_returning
-  system("imgcat ./lib/images/download.png")
-  puts "Welcome to the Tate Museum Arts App"
+  system("clear")
+  system("imgcat ./lib/images/Tate_Logo.jpg")
+  puts ""
+  puts "Welcome to the Tate Museum Arts App".black.on_red.bold
   puts ""
   user = @@cli.prompt_for_new_or_returning_user
-  puts ""
   if user == "New"
+    puts ""
     new_user = @@cli.prompt_for_new_user
     @@current_user = User.create(name: new_user)
-    puts ""
   else
+    puts ''
     returning_user = @@cli.prompt_for_returning_user
     @@current_user = User.find_by(name: returning_user)
-    puts ""
   end
 end
 
 def main_menu
-  puts "Main Menu"
+  puts ""
+  puts "Main Menu".white.on_yellow.bold
+  puts ""
     selection = @@cli.main_menu_prompt
     case selection
-    when 'View Favorites'
+    when 'View Favorites' 
       puts ""
-      puts 'Your Favorites'
+      puts 'Your Favorites'.white.on_green.bold
       @@cli.view_favorites(@@current_user)
       main_menu
     when 'Browse Artwork'
       puts ""
         @@selected_artist = @@cli.browse_by_artist(Artist.all)
-        puts ""
         @@selected_artwork = @@cli.artwork_by_artist(@@selected_artist)
-        puts ""
         favoriting_artwork
-        puts ""
     when 'Recommend Artwork'
       puts ""
-        puts 'Here are some recommendations:'
-        @@cli.recommend_artwork(Artwork.all.sample(5))
-        puts ''
+        puts 'Here are some recommendations:'.white.on_green.bold
+       @@selected_artwork =  @@cli.recommend_artwork(Artwork.all.sample(5))
         favoriting_artwork
-        puts ""
     when 'Exit'
-      puts "Thank You for Visiting!"
+      system("clear")
+      puts "Thank You for Visiting!".black.on_red.bold
+      system("imgcat ./lib/images/inside.jpg")
       exit
     end
 end
 
   def favoriting_artwork
+    # binding.pry
    art_selection = @@cli.favorite_artwork(@@selected_artwork)
    case art_selection
    when 'Favorite Art Piece'
-    puts ""
     Favorite.create(user: @@current_user, artwork: @@selected_artwork)
-    puts ""
      @@cli.view_favorites(@@current_user)
-     puts ""
      main_menu
    when "Return to Main Menu"
     puts ""
