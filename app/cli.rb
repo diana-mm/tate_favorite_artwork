@@ -8,6 +8,7 @@ class Cli
 
     def prompt_for_new_or_returning_user
         puts ''
+        `say "Are you a new or returning user?"`
         prompt.select("Are you a New or Returning User?".magenta.on_yellow.bold, %w(New Returning))
     end
 
@@ -33,6 +34,7 @@ class Cli
     def main_menu_prompt
         menu_options = ['★ Browse Artwork', '★ View Favorites', '★ Recommend Artwork', '★ Exit']
         prompt.select(" Please Select An Option:".white.on_red.bold, menu_options)
+        
     end
 
     def browse_by_artist(artists)

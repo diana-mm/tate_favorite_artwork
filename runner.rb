@@ -16,6 +16,7 @@ def new_or_returning
   system("imgcat ./lib/images/Tate_Logo.jpg")
   puts ""
   puts "Welcome to the Tate Collection App".black.on_red.bold
+  `say "Welcome to the Tate Collection App"`
   puts ""
   user = @@cli.prompt_for_new_or_returning_user
   if user == "New"
@@ -31,6 +32,7 @@ end
 
 def main_menu
   puts ""
+  `say "Main Menu"`
   puts "Main Menu".white.on_yellow.bold
   puts ""
     selection = @@cli.main_menu_prompt
@@ -52,6 +54,7 @@ def main_menu
         favoriting_artwork
     when '★ Exit'
       system("clear")
+      `say "Thank you for using the Tate Collection App"`
       puts "Thank You for Using the Tate Collection App!".black.on_red.bold
       system("imgcat ./lib/images/inside.jpg")
       exit
@@ -67,7 +70,6 @@ end
      @@cli.view_favorites(@@current_user)
      main_menu
    when "Return to Main Menu"
-    puts ""
      main_menu
    end
   end
