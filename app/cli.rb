@@ -1,6 +1,3 @@
-require 'tty-prompt'
-require 'paint'
-require 'pry'
 
 class Cli
     attr_reader :prompt
@@ -10,10 +7,12 @@ class Cli
     end
 
     def prompt_for_new_or_returning_user
+        puts ''
         prompt.select("Are you a New or Returning User?".magenta.on_yellow.bold, %w(New Returning))
     end
 
     def prompt_for_new_user
+        puts ''
         prompt.ask('What is your name?'.white.on_red.bold)
     end
 
@@ -25,13 +24,14 @@ class Cli
             puts ""
             prompt_for_new_user
         else
-        names = User.pluck(:name)
-        prompt.select("Please select your name:".white.on_red.bold, names)
+            puts ''
+            names = User.pluck(:name)
+            prompt.select("Please select your name:".white.on_red.bold, names)
         end
     end
 
     def main_menu_prompt
-        menu_options = ['Browse Artwork', 'View Favorites', 'Recommend Artwork', 'Exit']
+        menu_options = ['★ Browse Artwork', '★ View Favorites', '★ Recommend Artwork', '★ Exit']
         prompt.select(" Please Select An Option:".white.on_red.bold, menu_options)
     end
 
@@ -42,15 +42,16 @@ class Cli
     def view_favorites(user)
         user_favorites = Favorite.where(user: user)
         if user_favorites.length < 1
-            puts 'You have no favorites'.white.on_red.bold
+            puts "You have no favorites".white.on_red.bold
         else
             user_favorites.each do |favorite|
-                puts "#{favorite.artwork.title} by #{favorite.artwork.artist} "
+                puts "★ #{favorite.artwork.title} by #{favorite.artwork.artist}".light_red
             end
         end
     end
 
     def recommend_artwork(artworks)
+        puts ''
         prompt.select("  Pick an Artwork to View:".yellow.on_red.bold, artworks)
     end
 
@@ -59,7 +60,7 @@ class Cli
         art_artist = Artwork.all.select do |artwork|
              artwork.artist == artist.name 
         end
-        prompt.select("Pick a piece of art:".yellow.on_red.bold, art_artist)
+        prompt.select("Pick a piece of art by #{artist.name}:".blue.on_white.bold, art_artist)
     end
 
      def favorite_artwork(artwork)
