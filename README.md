@@ -31,4 +31,6 @@ Tate Collection Arts App Overview:
 
 This app is for anyone interested in exploring the artwork in the Tate Collection. The user can browse artist and artwork, go to artists' websites, visit each artwork's specific page for more information, and favortie pieces of artwork so that you can view later.
 
+Please see our video with step by step instructions on how to run this progam at https://youtu.be/sgV8n1JWE5U. This is a YouTube video and we hope you enjoy it.
+
 We hope you enjoy this app as much as much as we do!
