@@ -12,6 +12,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.1, >= 2.1.8)
+    colorize (0.8.1)
     concurrent-ruby (1.1.5)
     equatable (0.6.1)
     i18n (1.7.0)
@@ -19,7 +20,6 @@ GEM
     minitest (5.12.2)
     mustermann (1.0.3)
     necromancer (0.5.0)
-    paint (2.1.1)
     pastel (0.7.3)
       equatable (~> 0.6)
       tty-color (~> 0.5)
@@ -49,7 +49,7 @@ GEM
       tty-screen (~> 0.7)
       wisper (~> 2.0.0)
     tty-screen (0.7.0)
-    tzinfo (1.2.5)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     wisper (2.0.1)
     zeitwerk (2.2.0)
@@ -59,7 +59,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (~> 6.0)
-  paint (~> 2.1)
+  colorize
   require_all (~> 2.0)
   sinatra (~> 2.0)
   sinatra-activerecord (~> 2.0)
